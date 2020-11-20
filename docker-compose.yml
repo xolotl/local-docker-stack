@@ -18,6 +18,12 @@ services:
         target: /etc/apache2/sites-available/000-default.conf
       - source: php-ini
         target: /usr/local/etc/php/conf.d/local.ini
+    environment:
+      - WORDPRESS_DB_NAME=webhypothesis
+      - WORDPRESS_DB_USER=webhypothesis
+      - WORDPRESS_DB_PASSWORD=hCFA2Pe}vakvqU}CEQ3T
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_CHARSET=utf8
     <<: *network
 
   db:
@@ -34,6 +40,16 @@ services:
       - db_pwd
     <<: *network
 
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=sup3rs3cr3tp4ssw0rd
+      - UPLOAD_LIMIT=20M
+    <<: *network
 
 networks:
   net:
