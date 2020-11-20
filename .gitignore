@@ -6,3 +6,10 @@
 /demo/vendor/
 /demo/web/assets/
 /src/vendor/
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Thumbs.db
+._*
