@@ -9,10 +9,10 @@ services:
   php:
     image: lamp
     ports:
-      - 80:80
-      - 443:443
+      - "80:80"
+      - "443:443"
     volumes:
-      - workspace:/var/www
+      - workspace:/var/www:consistent
     configs:
       - source: apache-vhosts
         target: /etc/apache2/sites-available/000-default.conf
@@ -29,7 +29,7 @@ services:
   db:
     image: mysql:latest
     ports:
-      - 3306:3306
+      - "3306:3306"
     environment:
       - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db_pwd
       - MYSQL_USER=dbuser
@@ -43,7 +43,7 @@ services:
   phpmyadmin:
     image: phpmyadmin:latest
     ports:
-      - 8080:80
+      - "8080:80"
     environment:
       - PMA_HOST=db
       - PMA_USER=root
@@ -66,6 +66,6 @@ configs:
 
 volumes: 
   workspace:
-     external: true 
+    external: true
   data:
-     external: true
+    external: true
